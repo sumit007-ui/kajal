@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Invitation - Kajal & Hardeep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <audio
+  id="bg-audio"
+  autoplay
+  loop
+  muted
+  preload="auto"
+  playsinline
+>
+  <source src="assets/music/bg.mp3" type="audio/mpeg" />
+</audio>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("bg-audio");
+
+    audio.volume = 0.4;
+
+    // First play muted (browser allows this)
+    audio.play().then(() => {
+      // Unmute after successful start
+      audio.muted = false;
+    }).catch(() => {
+      // Hard fallback: first user interaction
+      const unlock = () => {
+        audio.muted = false;
+        audio.play();
+        document.removeEventListener("click", unlock);
+        document.removeEventListener("touchstart", unlock);
+      };
+      document.addEventListener("click", unlock);
+      document.addEventListener("touchstart", unlock);
+    });
+  });
+</script>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <span class="logo-text">💕 K & H</span>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#hero" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#couple-intro" class="nav-link">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a href="#story-timeline" class="nav-link">Journey</a>
+          </li>
+          <li class="nav-item">
+            <a href="#event-details" class="nav-link">Events</a>
+          </li>
+          <li class="nav-item">
+            <a href="#gallery" class="nav-link">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a href="#location-map" class="nav-link">Location</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+
+    <header id="hero" class="section hero-section">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="wedding-title">Kajal & Hardeep</h1>
+        <p class="couple-names">Together Forever</p>
+        <p class="wedding-date">March 11, 2026</p>
+        <div class="scroll-indicator">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M7 13l3 3 7-7"></path>
+            <path d="M7 6l3 3 7-7"></path>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <section id="couple-intro" class="section couple-intro-section">
+      <div class="container">
+        <div class="couple-intro-grid">
+          <div class="couple-photo bride-photo">
+            <img
+              src="assets/images/bride.jpg"
+              alt="Elegant Bride Portrait"
+              loading="lazy"
+            />
+          </div>
+          <div class="couple-description">
+            <h2>Our Love Story</h2>
+            <p>
+              Two hearts that found each other in the most unexpected ways. From
+              our first meeting to this beautiful journey, every moment has been
+              a blessing.
+            </p>
+          </div>
+          <div class="couple-photo groom-photo">
+            <img
+              src="assets/images/groom.jpg"
+              alt="Classic Groom Portrait"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="story-timeline" class="section story-timeline-section">
+      <div class="container">
+        <h2>Our Journey</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>First Meet</h3>
+              <p>
+                January 10, 2025 - The day our paths crossed and everything
+                changed.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>Engagement</h3>
+              <p>2 March, 2025 - The moment we said yes to forever.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>Wedding Day</h3>
+              <p>March 11, 2026 - Our happily ever after begins.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="event-details" class="section event-details-section">
+      <div class="container">
+        <h2>Wedding Events</h2>
+        <div class="event-cards">
+          <div class="event-card event-card-1">
+            <div class="event-card-header">
+              <div class="event-icon">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                  ></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+            </div>
+            <div class="event-card-content">
+              <h3>💍 Wedding Ceremony</h3>
+              <div class="event-details">
+                <div class="event-detail-item">
+                  <span class="event-label">📅 Date: </span>
+                  <span class="event-value"> March 11, 2026</span>
+                </div>
+                <div class="event-detail-item">
+                  <span class="event-label">🕐 Time: </span>
+                  <span class="event-value">8:00 PM - 12:00 PM</span>
+                </div>
+                <div class="event-detail-item">
+                  <span class="event-label">📍 Location: </span>
+                  <span class="event-value">  Dhindsa Solitaire Garden</span>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section gallery-section">
+      <div class="container">
+        <h2>Our Memories</h2>
+        <p class="gallery-subtitle">
+          Capturing moments that matter - Beautiful pre-wedding memories
+        </p>
+        <div class="gallery-grid">
+          <div class="gallery-item gallery-item-1">
+            <div class="gallery-item-wrapper">
+              <img
+                src="assets/images/1.jpg"
+                alt="Pre-wedding photoshoot"
+                loading="lazy"
+              />
+              <div class="gallery-overlay">
+                <span class="gallery-view-text">View</span>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item gallery-item-2">
+            <div class="gallery-item-wrapper">
+              <img
+                src="assets/images/2.jpg"
+                loading="lazy"
+              />
+              <div class="gallery-overlay">
+                <span class="gallery-view-text">View</span>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item gallery-item-3">
+            <div class="gallery-item-wrapper">
+              <img
+                src="assets/images/3.jpg"
+                loading="lazy"
+              />
+              <div class="gallery-overlay">
+                <span class="gallery-view-text">View</span>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item gallery-item-4">
+            <div class="gallery-item-wrapper">
+              <img
+                src="assets/images/4.jpg"
+                alt="Pre-wedding photoshoot"
+                loading="lazy"
+              />
+              <div class="gallery-overlay">
+                <span class="gallery-view-text">View</span>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item gallery-item-5">
+            <div class="gallery-item-wrapper">
+              <img
+                src="assets/images/5.jpg"
+                loading="lazy"
+              />
+              <div class="gallery-overlay">
+                <span class="gallery-view-text">View</span>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item gallery-item-6">
+            <div class="gallery-item-wrapper">
+              <img
+                src="assets/images/6.jpg"
+                loading="lazy"
+              />
+              <div class="gallery-overlay">
+                <span class="gallery-view-text">View</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="countdown" class="section countdown-section">
+      <div class="container">
+        <h2>Countdown to Our Special Day</h2>
+        <div class="countdown-timer">
+          <div class="countdown-item">
+            <span id="days" class="countdown-number">00</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-item">
+            <span id="hours" class="countdown-number">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-item">
+            <span id="minutes" class="countdown-number">00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-item">
+            <span id="seconds" class="countdown-number">00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="location-map" class="section location-map-section">
+      <div class="container">
+        <h2>Location & Directions</h2>
+        <div class="location-content">
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3387.5850469346217!2d74.85677!3d31.83333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391bc25b35a8687b%3A0xb5b33e9ef9d977d3!2sDhindsa%20Place%2C%20Subash%20Park%2C%20Batala%2C%20Punjab%20143505!5e0!3m2!1sen!2sin!4v1640000000000"
+              width="100%"
+              height="450"
+              style="border: 0; border-radius: 15px;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Wedding Location Map"
+            ></iframe>
+          </div>
+          <div class="location-details">
+            <div class="location-card">
+              <h3>💍 Wedding Ceremony</h3>
+              <p class="location-name">Dhindsa Solitaire Garden</p>
+              <p class="location-address">Subash Park, Batala, Punjab 143505</p>
+              <a
+                href="https://www.google.com/maps/place/Dhindsa+Place,+Subash+Park,+Batala,+Punjab+143505/data=!4m2!3m1!1s0x391bc25b35a8687b:0xb5b33e9ef9d977d3?sa=X&ved=1t:242&ictx=111"
+                target="_blank"
+                class="direction-link"
+              >
+                <span>📍 Get Directions</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer" class="section footer-section">
+      <div class="container footer-content">
+        <div class="footer-main">
+          <p class="footer-blessing">✨ We request your blessings for our happily ever after ✨</p>
+          <p class="footer-thanks">Thank you for sharing in our joy and celebrating this beautiful moment with us</p>
+        </div>
+        
+        <div class="footer-divider"></div>
+        
+        <div class="footer-credits">
+          <p class="footer-developed">With love from the <span class="family-name">Mehra Family</span></p>
+          <p class="footer-copyright">&copy; 2025 Sumit Mehra. All moments cherished.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
