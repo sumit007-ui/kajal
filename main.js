@@ -94,12 +94,80 @@ function initParallax() {
   const divider = document.getElementById("parallaxDivider");
   const registry = document.getElementById("parallaxRegistry");
 
-  window.addEventListener("scroll", () => {
-    const y = window.pageYOffset;
-    if (hero) hero.style.transform = `translateY(${y * 0.15}px)`;
-    if (divider) divider.style.backgroundPositionY = y * 0.4 + "px";
-    if (registry) registry.style.transform = `translateY(${(y - 3000) * 0.08}px)`;
-  });
+  if (!hero && !divider && !registry) return;
+
+  // Detect iOS (incl. touch Macs) reliably enough for our needs
+  function isIOS() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return true;
+    // iPad on iOS 13+ may report MacIntel, check for touch
+    if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) return true;
+    return false;
+  }
+
+  // Android and desktop - keep current behavior (simple scroll handler)
+  if (!isIOS()) {
+    window.addEventListener("scroll", () => {
+      const y = window.pageYOffset;
+      if (hero) hero.style.transform = `translateY(${y * 0.15}px)`;
+      if (divider) divider.style.backgroundPositionY = y * 0.4 + "px";
+      if (registry) registry.style.transform = `translateY(${(y - 3000) * 0.08}px)`;
+    }, { passive: true });
+    return;
+  }
+
+  // iOS: create an inner layer and animate via rAF for smoother GPU-accelerated motion
+  let dividerInner = null;
+  if (divider) {
+    // create inner only on iOS to avoid changing Android behavior
+    dividerInner = document.createElement('div');
+    dividerInner.className = 'parallax-inner';
+    // copy background-image from divider to inner if present
+    const style = window.getComputedStyle(divider);
+    const bg = style.backgroundImage;
+    if (bg && bg !== 'none') {
+      dividerInner.style.backgroundImage = bg;
+      divider.style.backgroundImage = 'none';
+    }
+    divider.appendChild(dividerInner);
+  }
+
+  let latestKnownScrollY = 0;
+  let ticking = false;
+
+  function onScroll() {
+    latestKnownScrollY = window.pageYOffset || document.documentElement.scrollTop;
+    if (!ticking) requestAnimationFrame(update);
+    ticking = true;
+  }
+
+  function update() {
+    const y = latestKnownScrollY;
+
+    if (hero) {
+      // Smaller multiplier on iOS to reduce jank
+      hero.style.transform = `translate3d(0, ${y * 0.10}px, 0)`;
+    }
+
+    if (divider && dividerInner) {
+      const rect = divider.getBoundingClientRect();
+      // rect.top is distance to viewport top; use it to compute relative translate
+      const translateY = -rect.top * 0.18; // tweak strength as needed
+      dividerInner.style.transform = `translate3d(0, ${translateY}px, 0)`;
+    }
+
+    if (registry) {
+      const offsetTop = registry.offsetTop || 0;
+      const offset = y - offsetTop;
+      registry.style.transform = `translate3d(0, ${offset * 0.06}px, 0)`;
+    }
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  latestKnownScrollY = window.pageYOffset || document.documentElement.scrollTop;
+  requestAnimationFrame(update);
 }
 
 function initGalleryLightbox() {
