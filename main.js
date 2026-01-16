@@ -145,21 +145,21 @@ function initParallax() {
     const y = latestKnownScrollY;
 
     if (hero) {
-      // Smaller multiplier on iOS to reduce jank
-      hero.style.transform = `translate3d(0, ${y * 0.10}px, 0)`;
+      // Slightly stronger multiplier on iOS for more noticeable parallax
+      hero.style.transform = `translate3d(0, ${y * 0.09}px, 0)`;
     }
 
     if (divider && dividerInner) {
       const rect = divider.getBoundingClientRect();
       // rect.top is distance to viewport top; use it to compute relative translate
-      const translateY = -rect.top * 0.18; // tweak strength as needed
+      const translateY = -rect.top * 0.16; // slightly stronger for clearer parallax
       dividerInner.style.transform = `translate3d(0, ${translateY}px, 0)`;
     }
 
     if (registry) {
       const offsetTop = registry.offsetTop || 0;
       const offset = y - offsetTop;
-      registry.style.transform = `translate3d(0, ${offset * 0.06}px, 0)`;
+      registry.style.transform = `translate3d(0, ${offset * 0.05}px, 0)`;
     }
 
     ticking = false;
