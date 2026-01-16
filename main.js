@@ -208,6 +208,41 @@ function initGuestInteractions() {
   });
 }
 
+function initMapEmbed() {
+  const containers = document.querySelectorAll('.map-container');
+  if (!containers.length) return;
+
+  containers.forEach(container => {
+    const thumb = container.querySelector('.map-thumb');
+    const closeBtn = container.querySelector('.map-close');
+
+    // On desktop hover is handled by CSS; on touch devices we'll toggle a class
+    const toggleOpen = (e) => {
+      container.classList.toggle('open');
+      e && e.stopPropagation();
+    };
+
+    if (thumb) {
+      thumb.addEventListener('click', (e) => {
+        // toggle on click/tap
+        toggleOpen(e);
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        container.classList.remove('open');
+        e && e.stopPropagation();
+      });
+    }
+
+    // Close map if user taps outside
+    document.addEventListener('click', (e) => {
+      if (!container.contains(e.target)) container.classList.remove('open');
+    });
+  });
+}
+
 function createEmoji(x, y, char, className) {
   const el = document.createElement("div");
   el.className = `floating-emoji ${className}`;
@@ -265,5 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initGalleryLightbox();
   initBlessings();
   initGuestInteractions();
+  initMapEmbed();
   initMusic();
 });

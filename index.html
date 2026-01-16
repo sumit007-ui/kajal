@@ -192,6 +192,26 @@
   <div class="location-fallback reveal">
     <h2>Venue Location</h2>
     <p class="text">Dhindsa Place, Subash Park, Batala, Punjab 143505</p>
+
+    <div class="map-container">
+      <div class="map-thumb" aria-hidden="true">
+        <div class="map-thumb-inner">
+          <i class="fas fa-map-marker-alt" style="font-size:28px;color:var(--accent-color);"></i>
+          <div class="map-thumb-text">Hover or tap to preview map</div>
+        </div>
+      </div>
+
+      <div class="map-iframe">
+        <button class="map-close" aria-label="Close map">&times;</button>
+        <iframe
+          src="https://www.google.com/maps?q=Dhindsa+Place,+Subash+Park,+Batala,+Punjab+143505&output=embed"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+
     <a
       href="https://www.google.com/maps/place/Dhindsa+Place,+Subash+Park,+Batala,+Punjab+143505"
       target="_blank"
