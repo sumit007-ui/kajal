@@ -643,6 +643,7 @@ footer * {
     width: 100%;
     height: 100%;
     pointer-events: none;
+    z-index: 1;
 }
 .map-iframe iframe {
     width: 100%;
@@ -650,14 +651,21 @@ footer * {
     border: 0;
     display: block;
     opacity: 0;
-    transform: scale(0.98);
-    transition: opacity 0.28s ease, transform 0.28s ease;
+    transition: opacity 0.3s ease;
+    background-color: #f0f0f0;
+}
+.map-container:hover .map-iframe,
+.map-container.open .map-iframe {
+    pointer-events: auto;
 }
 .map-container:hover .map-iframe iframe,
 .map-container.open .map-iframe iframe {
     opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
+}
+@media (max-width: 768px) {
+    .map-container.open .map-iframe iframe {
+        touch-action: auto;
+    }
 }
 .map-close {
     position: absolute;
